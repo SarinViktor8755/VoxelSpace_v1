@@ -68,12 +68,12 @@ public class VoxelSpace extends ApplicationAdapter {
 
 		for (int j = 1; j < img.getTextureData().getHeight(); j++)
 		for (int i = 1; i < img.getTextureData().getHeight(); i++) {
-			if(MathUtils.randomBoolean(.99f))continue;
+			if(MathUtils.randomBoolean(995))continue;
 			c = new Color(pm.getPixel(i,j));
 
 			batch.setColor(c);
 			batch.begin();
-				batch.draw(vox, i, j ,5,20);
+				batch.draw(vox, i, j ,20,20);
 			batch.end();
 
 		}
