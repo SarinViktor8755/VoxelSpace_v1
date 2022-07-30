@@ -7,7 +7,7 @@ public class Voxel {
     float vert; // высота
 
     public Voxel(Color color, float vert) {
-        this.color = color;
+        this.color = new Color(color);
         this.vert = vert;
     }
 
@@ -17,5 +17,13 @@ public class Voxel {
 
     public float getVert() {
         return vert;
+    }
+
+    @Override
+    public String toString() {
+        return "Voxel{" +
+                "color=" + color.r +
+                ", vert=" + vert +
+                '}';
     }
 }
