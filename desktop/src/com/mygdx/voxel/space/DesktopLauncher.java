@@ -10,6 +10,8 @@ public class DesktopLauncher {
 		Lwjgl3ApplicationConfiguration config = new Lwjgl3ApplicationConfiguration();
 		config.setForegroundFPS(60);
 		config.setWindowSizeLimits(1280/3,720/3,1280,1280);
+		config.setWindowedMode(1280/2,720/2);
+		config.setTitle("VoxelSpace");
 		config.setTitle("My GDX Game");
 		new Lwjgl3Application(new VoxelSpace(), config);
 	}

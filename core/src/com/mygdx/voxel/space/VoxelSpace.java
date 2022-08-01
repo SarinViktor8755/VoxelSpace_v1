@@ -20,7 +20,7 @@ import java.awt.image.IndexColorModel;
 
 public class VoxelSpace extends ApplicationAdapter {
 	SpriteBatch batch;
-	Texture img, vox;
+	Texture col, vox;
 	Pixmap pm;
 
 
@@ -39,7 +39,9 @@ public class VoxelSpace extends ApplicationAdapter {
 		batch = new SpriteBatch();
 		vox = new Texture("badlogic.jpg");
 
-		img = new Texture("maps\\C1W.png");
+		col = new Texture("maps\\C1W.png");
+		vox = new Texture("maps\\D1.png");
+
 //		//C:\Games\VoxelSpace\assets\maps\C1W.png
 //		img.getTextureData().prepare();
 //		pm = img.getTextureData().consumePixmap();
@@ -48,24 +50,24 @@ public class VoxelSpace extends ApplicationAdapter {
 		rotation_camera = 0;
 
 		camera = new OrthographicCamera();
-		viewport = new FitViewport(800, 480, camera);
+		viewport = new FitViewport(1280, 720, camera);
 
-		indexVoxel = new IndexVoxel(img,img);
+		indexVoxel = new IndexVoxel(col,vox);
 	}
 
 	@Override
 	public void render () {
-		camera.position.set(640,480,1);
+		//camera.position.set(0,480,1);
 		this.camera.update();
 		this.batch.setProjectionMatrix(camera.combined);
 
-		if(position_camera.x < 0)
-		position_camera.sub(100 * Gdx.graphics.getDeltaTime(),100 * Gdx.graphics.getDeltaTime(),0);
-
-		if(position_camera.x > 500)position_camera.add(100 * Gdx.graphics.getDeltaTime(),100 * Gdx.graphics.getDeltaTime(),0);
-//		pm.getPixel(12, MathUtils.random(0,img.getHeight()));
-//		System.out.println(
-//				pm.getPixel(12, MathUtils.random(0,img.getHeight()))
+//		if(position_camera.x < 0)
+//		position_camera.sub(100 * Gdx.graphics.getDeltaTime(),100 * Gdx.graphics.getDeltaTime(),0);
+//
+//		if(position_camera.x > 500)position_camera.add(100 * Gdx.graphics.getDeltaTime(),100 * Gdx.graphics.getDeltaTime(),0);
+////		pm.getPixel(12, MathUtils.random(0,img.getHeight()));
+////		System.out.println(
+////				pm.getPixel(12, MathUtils.random(0,img.getHeight()))
 //		);
 //		Color c = new Color(pm.getPixel(MathUtils.random(0,img.getHeight()), MathUtils.random(0,img.getHeight())));
 //		System.out.println(c.r);
@@ -92,13 +94,14 @@ public class VoxelSpace extends ApplicationAdapter {
 ////
 ////		}
 		indexVoxel.rander_map(batch,position_camera,rotation_camera);
-
+		System.out.println(camera.position);
 	}
 	
 	@Override
 	public void dispose () {
 		batch.dispose();
-		img.dispose();
+		col.dispose();
+		vox.dispose();
 	}
 
 	public void resize(int width, int height) {
