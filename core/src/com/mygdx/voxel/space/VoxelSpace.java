@@ -39,9 +39,13 @@ public class VoxelSpace extends ApplicationAdapter {
 		batch = new SpriteBatch();
 		vox = new Texture("badlogic.jpg");
 
+<<<<<<< HEAD
 		col = new Texture("maps\\C1W.png");
 		vox = new Texture("maps\\D1.png");
 
+=======
+		img = new Texture("maps\\C1W.png");
+>>>>>>> 1a9c7938884db88e8ed83832126053ecf03f9069
 //		//C:\Games\VoxelSpace\assets\maps\C1W.png
 //		img.getTextureData().prepare();
 //		pm = img.getTextureData().consumePixmap();
@@ -50,9 +54,15 @@ public class VoxelSpace extends ApplicationAdapter {
 		rotation_camera = 0;
 
 		camera = new OrthographicCamera();
+<<<<<<< HEAD
 		viewport = new FitViewport(1280, 720, camera);
 
 		indexVoxel = new IndexVoxel(col,vox);
+=======
+		viewport = new FitViewport(800, 480, camera);
+
+		indexVoxel = new IndexVoxel(img,img);
+>>>>>>> 1a9c7938884db88e8ed83832126053ecf03f9069
 	}
 
 	@Override
@@ -61,6 +71,7 @@ public class VoxelSpace extends ApplicationAdapter {
 		this.camera.update();
 		this.batch.setProjectionMatrix(camera.combined);
 
+<<<<<<< HEAD
 //		if(position_camera.x < 0)
 //		position_camera.sub(100 * Gdx.graphics.getDeltaTime(),100 * Gdx.graphics.getDeltaTime(),0);
 //
@@ -68,13 +79,44 @@ public class VoxelSpace extends ApplicationAdapter {
 ////		pm.getPixel(12, MathUtils.random(0,img.getHeight()));
 ////		System.out.println(
 ////				pm.getPixel(12, MathUtils.random(0,img.getHeight()))
+=======
+		if(position_camera.x < 0)
+		position_camera.sub(100 * Gdx.graphics.getDeltaTime(),100 * Gdx.graphics.getDeltaTime(),0);
+
+		if(position_camera.x > 500)position_camera.add(100 * Gdx.graphics.getDeltaTime(),100 * Gdx.graphics.getDeltaTime(),0);
+//		pm.getPixel(12, MathUtils.random(0,img.getHeight()));
+//		System.out.println(
+//				pm.getPixel(12, MathUtils.random(0,img.getHeight()))
+>>>>>>> 1a9c7938884db88e8ed83832126053ecf03f9069
 //		);
 //		Color c = new Color(pm.getPixel(MathUtils.random(0,img.getHeight()), MathUtils.random(0,img.getHeight())));
 //		System.out.println(c.r);
 //		System.out.println(c.b);
 //		System.out.println(c.g);
+<<<<<<< HEAD
+=======
+
+>>>>>>> 1a9c7938884db88e8ed83832126053ecf03f9069
 
 
+//		for (int i = 0; i < 30; i++) { // линий визуализации
+//			for (int j = 0; j < 150; j++) {
+//
+//			}
+//		}
+//
+////		for (int j = 1; j < img.getTextureData().getHeight(); j++)
+////		for (int i = 1; i < img.getTextureData().getHeight(); i++) {
+////			if(MathUtils.randomBoolean(.995f))continue;
+////			c = new Color(pm.getPixel(i,j));
+////
+////			batch.setColor(c);
+////			batch.begin();
+////				batch.draw(vox, i, j ,5,20);
+////			batch.end();
+////
+////		}
+		indexVoxel.rander_map(batch,position_camera,rotation_camera);
 
 //		for (int i = 0; i < 30; i++) { // линий визуализации
 //			for (int j = 0; j < 150; j++) {

@@ -6,7 +6,11 @@ import com.badlogic.gdx.graphics.Pixmap;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.MathUtils;
+<<<<<<< HEAD
 
+=======
+import com.badlogic.gdx.math.Vector2;
+>>>>>>> 1a9c7938884db88e8ed83832126053ecf03f9069
 import com.badlogic.gdx.math.Vector3;
 import com.badlogic.gdx.utils.ScreenUtils;
 import com.mygdx.voxel.space.InputKey;
@@ -22,15 +26,23 @@ public class IndexVoxel {
     Color medium_color = new Color(0, 0, 0, 1);
     InputKey inputKey = new InputKey();
 
+<<<<<<< HEAD
     Vector3 pos_hero = new Vector3(500, 500, 0);
 
     public IndexVoxel(Texture color, Texture voxel) { // w - x ;; h -y
 
+=======
+    Vector3 pos_hero;
+
+    public IndexVoxel(Texture color, Texture voxel) { // w - x ;; h -y
+        pos_hero = new Vector3(0,0,0);
+>>>>>>> 1a9c7938884db88e8ed83832126053ecf03f9069
         System.out.println("start");
         this.max_w = color.getWidth();
         this.max_h = color.getHeight();
         this.voxelmapDb = new HashMap<>();
         Color color_v = new Color();
+<<<<<<< HEAD
         Color hide_color = new Color();
         color.getTextureData().prepare();
         voxel.getTextureData().prepare();
@@ -40,15 +52,26 @@ public class IndexVoxel {
 
         /////////////////////
 
+=======
+        color.getTextureData().prepare();
+        Pixmap pm = color.getTextureData().consumePixmap();
+>>>>>>> 1a9c7938884db88e8ed83832126053ecf03f9069
         float col = 0;
         for (int w = 1; w <= max_w; w++) {
             for (int h = 1; h <= max_h; h++) {
 
                 color_v.set(pm.getPixel(w, h));
+<<<<<<< HEAD
                 hide_color.set(pmv.getPixel(w, h));
                 medium_color.add(color_v);
 
                 generate(w, h, color_v, hide_color.a);
+=======
+                medium_color.add(color_v);
+
+                //  color_v.set(pm.getPixel(w,h));
+                generate(w, h, color_v, 22);
+>>>>>>> 1a9c7938884db88e8ed83832126053ecf03f9069
                 col++;
             }
 
@@ -59,6 +82,10 @@ public class IndexVoxel {
         System.out.println("mc " + medium_color.r);
         batch = new SpriteBatch();
 
+<<<<<<< HEAD
+=======
+        //  System.out.println(voxelmapDb);
+>>>>>>> 1a9c7938884db88e8ed83832126053ecf03f9069
         System.out.println("!END");
 
         Gdx.input.setInputProcessor(inputKey);
@@ -78,9 +105,14 @@ public class IndexVoxel {
     }
 
     private void generate(int x, int y, Color color, float height) {
+<<<<<<< HEAD
         Voxel v = new Voxel(new Color(color), height);
         //  System.out.println(v);
         this.voxelmapDb.put(generateHash(x, y), v);
+=======
+
+        this.voxelmapDb.put(generateHash(x, y), new Voxel(new Color(color), height));
+>>>>>>> 1a9c7938884db88e8ed83832126053ecf03f9069
     }
 
     private String generateHash(int x, int y) {
@@ -89,6 +121,7 @@ public class IndexVoxel {
 
     public void rander_map(SpriteBatch spriteBatch, Vector3 pos, float rot) {
         // if (MathUtils.randomBoolean(0.005f))
+<<<<<<< HEAD
         processManagement();
 
         batch.begin();
@@ -143,6 +176,29 @@ public class IndexVoxel {
         }
         if (move) ScreenUtils.clear(medium_color);
 
+=======
+            ScreenUtils.clear(medium_color);
+        batch.begin();
+
+        for (int w = 1; w < 700; w++) {
+            for (int h = 1; h < 300; h++) {
+                //  System.out.println("--  "+getVoxel(h,w));
+                if (!MathUtils.randomBoolean(.99f)) continue;
+                Voxel v = getVoxel(w, h);
+
+                batch.setColor(v.color);
+                batch.draw(vox, pos.x + w * 2, pos.x + h *2 ,3,3);
+
+            }
+
+        }
+        batch.end();
+    }
+
+    private void processManagement(){
+        //if(inputKey.isBack()) pos_hero
+        
+>>>>>>> 1a9c7938884db88e8ed83832126053ecf03f9069
     }
 
 
