@@ -76,7 +76,20 @@ public class IndexVoxel {
 
 
     private Voxel getVoxel(int x, int y) {
-        //  System.out.println(generateHash(x, y) + " !!!");
+//        if (x < 1) x =1;
+//        if (y < 1) y =1;
+//
+//        if (x >max_h) x=1;
+//        if (y >max_w) y=1;
+//        x = x % max_w;
+//        y = y % max_h;
+//        System.out.println(x + " x");
+        if(x> max_h-1) x = x % max_h;
+        if(y> max_w-1) {y = y % max_w;}
+
+
+        if(x<1) x = max_h -1;
+        if(y<1) y = max_w -1;
         return voxelmapDb.get(generateHash(x, y));
     }
 
@@ -98,32 +111,24 @@ public class IndexVoxel {
     }
 
     public void rander_map(SpriteBatch spriteBatch, Vector3 pos, float rot) {
-        // if (MathUtils.randomBoolean(0.005f))
+
 
         processManagement();
 
         batch.begin();
 
         for (int h = 110; h > 1; h--) {
-            for (int w = 350 + h; w > 1 - h; w--) {
+            for (int w = 200; w > 1; w--) {
 
                 //  System.out.println("--  "+getVoxel(h,w));
-                if (!MathUtils.randomBoolean(.3f)) continue;
-                try {
-                    Voxel v = getVoxel(w + (int) pos_hero.x, h + (int) pos_hero.y);
+             //   if (!MathUtils.randomBoolean(.5f)) continue;
 
-                } catch (NullPointerException e) {
-                    if (w + (int) pos_hero.x <= 0) w *= -1;
-                    if (h + (int) pos_hero.x <= 0) h *= -1;
-
-                    if (w > max_w) w = 1;
-                    if (h > max_h) h = 1;
-
-                } finally {
                     Voxel v = getVoxel(w + (int) pos_hero.x, h + (int) pos_hero.y);
                     batch.setColor(v.color);
-                    batch.draw(vox, w, h, 3, 1 + v.getVert() * 100);
-                }
+                    int pers = Math.abs(110/2) ;
+
+                    batch.draw(vox, w  * 2 , h * 2, 2, 5 + v.getVert() * 300);
+
             }
         }
         batch.end();
@@ -136,20 +141,20 @@ public class IndexVoxel {
         if (MathUtils.randomBoolean(.05f)) System.out.println(pos_hero);
         float dt = Gdx.graphics.getDeltaTime();
         if (inputKey.isLeft()) {
-            pos_hero.sub(100 * dt, 0, 0);
+            pos_hero.sub(200 * dt, 0, 0);
             move = true;
         }
         if (inputKey.isRight()) {
-            pos_hero.add(100 * dt, 0, 0);
+            pos_hero.add(200 * dt, 0, 0);
             move = true;
         }
 
         if (inputKey.isForward()) {
-            pos_hero.add(0, 100 * dt, 0);
+            pos_hero.add(0, 200 * dt, 0);
             move = true;
         }
         if (inputKey.isBack()) {
-            pos_hero.sub(0, 100 * dt, 0);
+            pos_hero.sub(0, 200 * dt, 0);
             move = true;
         }
         if (move) ScreenUtils.clear(medium_color);

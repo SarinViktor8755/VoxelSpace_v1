@@ -99,7 +99,7 @@ public class VoxelSpace extends ApplicationAdapter {
 ////			batch.end();
 ////
 ////		}
-		indexVoxel.rander_map(batch,position_camera,rotation_camera);
+	//	indexVoxel.rander_map(batch,position_camera,rotation_camera);
 
 //		for (int i = 0; i < 30; i++) { // линий визуализации
 //			for (int j = 0; j < 150; j++) {
